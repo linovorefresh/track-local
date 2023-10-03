@@ -3,7 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import mongoose from "mongoose";
 import 'dotenv/config'
-import router from "./routes/auth";
+import router from "./routes/auth.js";
 
 // init app and express 
 const app = express();
