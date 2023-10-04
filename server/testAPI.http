@@ -1,0 +1,18 @@
+### POST VERIFY USER EMAIL SIGNING UP 
+
+POST  http://localhost:8000/api/preRegister
+Content-Type: application/json
+
+{
+    "email": "linolp@gmail.com",
+    "password": "savagetyson"
+}
+
+### POST TO REGISTER USER
+
+POST http://localhost:3001/api/register
+Content-Type: application/json
+
+{
+    "token": ""
+}

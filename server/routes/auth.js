@@ -1,11 +1,8 @@
 import { Router } from "express";
+import { preRegister } from "../controllers/auth.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-    res.json({
-        data: 'greetings from api from routes',
-    })
-})
+router.post("/preRegister", preRegister)
 
 export default router;
