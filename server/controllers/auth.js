@@ -1,7 +1,11 @@
-import { AWSSES } from "../SES/config.js";
-import { emailTemplate } from "../helpers/emailTemplate.js" 
 import 'dotenv/config'
 import jwt from 'jsonwebtoken';
+import { nanoid } from 'nanoid'
+import { AWSSES } from "../SES/config.js";
+import { emailTemplate } from "../helpers/emailTemplate.js" 
+import { hashPassword, comparePassword } from "../helpers/auth.js"
+import User from '../models/user.js';
+
 
 export const preRegister = async (req, res) => {
     try {
@@ -10,7 +14,7 @@ export const preRegister = async (req, res) => {
         const first = 'Testrun';
         const last = 'Name';
         const token = jwt.sign({email, password, first, last}, process.env.JWT_SECRET, {expiresIn: '1h'});
-        
+
         AWSSES.sendEmail( 
             emailTemplate(
                 email,
@@ -34,5 +38,30 @@ export const preRegister = async (req, res) => {
     } catch (err) {
         console.log(err);
         return res.json({ error: "Somethings wrong. Try again."})
+    }
+}
+
+export const register = async (req, res) => {
+    try {
+        const { email, password, first, last } = jwt.verify(req.body.token, process.env.JWT_SECRET);
+        const hashedPassword = await hashPassword(password);
+
+        const user = await new User({
+            username: nanoid(6),
+            email,
+            password: hashedPassword
+        }).save()
+
+        const token = jwt.sign({ _id: user._id}, process.env.JWT_SECRET, { expiresIn: "1h"});
+        const refreshToken = jwt.sign({ _id: user._id}, process.env.JWT_SECRET, { expiresIn: "4d"});
+
+        return res.json({
+            token, 
+            refreshToken, 
+            user
+        })
+    } catch (err) {
+        console.log(err);
+        return res.json({ error: "Something went wrong. Try again" })
     }
 }

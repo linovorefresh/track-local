@@ -37,9 +37,12 @@ const schema = new mongoose.Schema(
         },
         enquiredProperties: [{ type: mongoose.Schema.Types.ObjectId, ref: "Ad" }],
         wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Ad" }],
-        resetCode: "",
+        resetCode: { type: String, default: "" },
     },
-    { timestamps: true }
+    { timestamps: true },
+    // { collection: 'User' }
+    // Mongoose pluralizes the model name and uses that as the collection name by defualt. 
+    // If you don't want the default behavior, you can supply your own name
   )
 
 export default mongoose.model('User', schema);

@@ -1,6 +1,6 @@
 ### POST VERIFY USER EMAIL SIGNING UP 
 
-POST  http://localhost:8000/api/preRegister
+POST  http://localhost:8000/api/pre-register
 Content-Type: application/json
 
 {
@@ -10,9 +10,9 @@ Content-Type: application/json
 
 ### POST TO REGISTER USER
 
-POST http://localhost:3001/api/register
+POST http://localhost:8000/api/register
 Content-Type: application/json
 
 {
-    "token": ""
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxpbm9scEBnbWFpbC5jb20iLCJwYXNzd29yZCI6InNhdmFnZXR5c29uIiwiZmlyc3QiOiJUZXN0cnVuIiwibGFzdCI6Ik5hbWUiLCJpYXQiOjE2OTY0NTA3ODQsImV4cCI6MTY5NjQ1NDM4NH0.zyGB1Cdq2SgCfbn8ugYHw4ZM5s7cx52puh0X37WL4kI"
 }
