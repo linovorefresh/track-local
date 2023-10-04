@@ -5,15 +5,28 @@ import { AWSSES } from "../SES/config.js";
 import { emailTemplate } from "../helpers/emailTemplate.js" 
 import { hashPassword, comparePassword } from "../helpers/auth.js"
 import User from '../models/user.js';
+import validator from 'email-validator'
 
 
 export const preRegister = async (req, res) => {
     try {
 
         const { email, password } = req.body;
-        const first = 'Testrun';
-        const last = 'Name';
-        const token = jwt.sign({email, password, first, last}, process.env.JWT_SECRET, {expiresIn: '1h'});
+
+        // validation for valid email
+        if(!validator.validate(email)) {
+            return res.json({ error: "A valid email is required" })
+        }
+        if(!password) {
+            return res.json({ error: "A password is required" })
+        }
+
+        const user = await User.findOne({ email })
+        if(user) {
+            return res.json({ error: "Email is already taken" })
+        }
+
+        const token = jwt.sign({email, password}, process.env.JWT_SECRET, {expiresIn: '1h'});
 
         AWSSES.sendEmail( 
             emailTemplate(

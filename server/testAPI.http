@@ -4,8 +4,8 @@ POST  http://localhost:8000/api/pre-register
 Content-Type: application/json
 
 {
-    "email": "linolp@gmail.com",
-    "password": "savagetyson"
+    "email": "linolp9@gmail.com",
+    "password": ""
 }
 
 ### POST TO REGISTER USER
