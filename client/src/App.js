@@ -1,10 +1,20 @@
-
+import Home from './pages/Home.js'
+import Register from './pages/Register.js';
 import './App.css';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <div>
-      <h1>Greetings! Start here for react </h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={ <Home/> } />
+          <Route path='/Register' element={ <Register/> } />
+        </Routes>
+      </BrowserRouter>
+
+      
     </div>
   );
 }
