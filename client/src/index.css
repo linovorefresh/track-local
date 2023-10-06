@@ -1,0 +1,8 @@
+.pointer {
+    cursor: pointer;
+  }
+  
+  .active {
+    color: white;
+    background: #2196f3;
+  }
