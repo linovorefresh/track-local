@@ -4,13 +4,15 @@ import { AuthProvider } from './context/auth.js';
 import Nav from './components/nav/Nav.js';
 import './App.css';
 
+import { Toaster } from 'react-hot-toast'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <Nav/>
+        <Nav />
+        <Toaster />
         <AuthProvider>
           <Routes>
             <Route path='/' element={ <Home/> } />
