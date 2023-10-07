@@ -1,10 +1,11 @@
 import { api } from './config.js'
 
 export const salesAPI = {
-    preRegister: async function () {
+    preRegister: async function (body) {
         const response = await api.request({
             url: `/pre-register`,
             method: "POST",
+            data: body
         })
 
         return response

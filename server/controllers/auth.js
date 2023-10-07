@@ -11,7 +11,7 @@ import validator from 'email-validator'
 export const preRegister = async (req, res) => {
     try {
 
-        const { email, password } = req.body;
+        const { email, password } = req.body; console.log(req.body)
 
         // validation for valid email
         if(!validator.validate(email)) {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 // import axios from axios
 import { toast } from 'react-hot-toast'
 
-import { salesAPI } from '../api/SalesAPI';
+import { salesAPI } from '../api/salesAPI.js';
 
 export default function Register() {
     const [ email, setEmail ] = useState('');
@@ -17,7 +17,7 @@ export default function Register() {
             //     email,
             //     password
             // })
-            const { data  } = salesAPI.preRegister();
+            const { data  } = salesAPI.preRegister({email, password});
 
             if(data?.error) {
                 toast.error(data?.error)
