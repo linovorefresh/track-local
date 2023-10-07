@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import axios from axios
+// import axios from axios
 import { toast } from 'react-hot-toast'
-import {API} from '../config.js'
+
+import { salesAPI } from '../api/SalesAPI';
 
 export default function Register() {
     const [ email, setEmail ] = useState('');
@@ -12,10 +13,11 @@ export default function Register() {
         e.preventDefault()
 
         try {
-            const { data } = await axios.post(`${API}/pre-register`, {
-                email,
-                password
-            })
+            // const { data } = await axios.post(`${API}/pre-register`, {
+            //     email,
+            //     password
+            // })
+            const { data  } = salesAPI.preRegister();
 
             if(data?.error) {
                 toast.error(data?.error)
