@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react"; 
+import { useState, createContext, useContext, useEffect } from "react"; 
 
 const AuthContext = createContext();
 
@@ -8,6 +8,11 @@ const AuthProvider = ({ children }) => {
         token: '',
         refreshToken: ''
     });
+
+    useEffect(() => {
+        let fromLS = localStorage.get('aa');
+        if (fromLS) setAuth(JSON.parse(fromLS))
+    }, []);
 
     return (
         <AuthContext.Provider value={[auth, setAuth]} >

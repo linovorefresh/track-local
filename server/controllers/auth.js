@@ -22,9 +22,9 @@ export const preRegister = async (req, res) => {
         }
 
         const user = await User.findOne({ email })
-        if(user) {
-            return res.json({ error: "Email is already taken" })
-        }
+        // if(user) {
+        //     return res.json({ error: "Email is already taken" })
+        // }
 
         const token = jwt.sign({email, password}, process.env.JWT_SECRET, {expiresIn: '1h'});
 

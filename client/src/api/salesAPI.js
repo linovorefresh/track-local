@@ -8,6 +8,16 @@ export const salesAPI = {
             data: body
         })
 
-        return response
+        return response;
+    },
+
+    register: async function (body) {
+        const response = await api.request({
+            url: `/register`,
+            method: "POST",
+            data: body
+        })
+
+        return response;
     }
 }
